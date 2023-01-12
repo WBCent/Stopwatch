@@ -1,9 +1,4 @@
-window.onload = Timer() 
-
-
-
-
-function Timer() {
+window.onload = function() {
     var hours = 00;
     var minutes = 00;
     var seconds = 00;
@@ -13,75 +8,61 @@ function Timer() {
     var resetButton = document.getElementById("resetButton");
     var Interval;
 
-    startButton.onclick = start()
-    function start() {
+    startButton.onclick = function() {
         clearInterval(Interval);
-        Interval = setInterval(startTimer, 1)
-    }
+         Interval = setInterval(startTimer, 1);
+      }
+      
+        stopButton.onclick = function() {
+           clearInterval(Interval);
+      }
 
-    stopButton.onclick = stop();
-    function stop() {
-        clearInterval(Interval)
-    }
 
-    resetButton.onclick = reset();
-    function reset() {
+    resetButton.onclick = function() {
         clearInterval(Interval);
         hours = 00;
         minutes = 00;
         seconds = 00;
         milliseconds = 00;
         document.getElementById("hours").innerHTML = hours;
-        document.getElementById("minutes").innerHTML = hours;
-        document.getElementById("seconds").innerHTML = hours;
-        document.getElementById("milliseconds").innerHTML = hours;
+        document.getElementById("minutes").innerHTML = minutes;
+        document.getElementById("seconds").innerHTML = seconds;
+        document.getElementById("milliseconds").innerHTML = milliseconds;
+    }
+    
+    function startTimer() {
+        milliseconds++;
+        if(milliseconds <= 9){
+            document.getElementById("milliseconds").innerHTML = "0" + milliseconds;
+        }
+        if (milliseconds > 9) {
+            document.getElementById('milliseconds').innerHTML = milliseconds;
+        }
+        if (milliseconds > 99) {
+            seconds++;
+            document.getElementById("seconds").innerHTML = "0" +seconds;
+            milliseconds =0;
+            document.getElementById("milliseconds") = "0"+ 0;
+        }
+        if (seconds > 9) {
+            document.getElementById('seconds').innerHTML = seconds;
+        }
+        if(seconds>59) {
+            minutes++;
+            document.getElementById('minutes').innerHTML = "0" + minutes;
+            seconds = 0;
+            document.getElementById("seconds") = "0" + 0;
+        }
+        if (minutes > 9) {
+            document.getElementById('minutes').innerHTML = minutes;
+        }
+        if(minutes>59) {
+            hours++;
+            document.getElementById('hours').innerHTML = "0" + hours;
+            minutes = 0;
+            document.getElementById("minutes") = "0" + 0;
+        }
+
     }
 
 };
-
-    var appendTens = document.getElementById("tens")
-    var appendSeconds = document.getElementById("seconds")
-    var buttonStart = document.getElementById('button-start');
-    var buttonStop = document.getElementById('button-stop');
-    var buttonReset = document.getElementById('button-reset');
-  
-    
-  
-    buttonReset.onclick = function() {
-       clearInterval(Interval);
-      tens = "00";
-        seconds = "00";
-      appendTens.innerHTML = tens;
-        appendSeconds.innerHTML = seconds;
-    }
-    
-     
-    
-    function startTimer () {
-      tens++; 
-      
-      if(tens <= 9){
-        appendTens.innerHTML = "0" + tens;
-      }
-      
-      if (tens > 9){
-        appendTens.innerHTML = tens;
-        
-      } 
-      
-      if (tens > 99) {
-        console.log("seconds");
-        seconds++;
-        appendSeconds.innerHTML = "0" + seconds;
-        tens = 0;
-        appendTens.innerHTML = "0" + 0;
-      }
-      
-      if (seconds > 9){
-        appendSeconds.innerHTML = seconds;
-      }
-    
-    }
-    
-  
-  }
